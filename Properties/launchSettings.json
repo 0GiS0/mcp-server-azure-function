@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "mcp_azure_function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7002",
+      "launchBrowser": false
+    }
+  }
+}
