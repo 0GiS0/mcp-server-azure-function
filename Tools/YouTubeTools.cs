@@ -42,7 +42,11 @@ public class YouTubeTool(ILogger<YouTubeTool> logger)
             .Select(item => new
             {
                 Title = item.Snippet.Title,
-                Url = $"https://www.youtube.com/watch?v={item.Id.VideoId}"
+                Url = $"https://www.youtube.com/watch?v={item.Id.VideoId}",
+                Description = item.Snippet.Description,
+                PublishedAt = item.Snippet.PublishedAt,
+                ChannelTitle = item.Snippet.ChannelTitle,
+                ThumbnailUrl = item.Snippet.Thumbnails.Default__.Url                
             })
             .ToList();
 

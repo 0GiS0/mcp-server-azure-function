@@ -12,8 +12,8 @@ Aquí tienes toda la información sobre este paquete de Nuget: https://www.nuget
 Para probarlo puedes usar MCP inspector:
 
 ```bash
-npx @modelcontextprotocol/inspector
+npx @modelcontextprotocol/inspector http://localhost:7071/runtime/webhooks/mcp/sse
 ```
 
-En la interfaz hay que seleccionar `Transport type`como `SSE`y la URL a añadir es: `http://0.0.0.0:7071/runtime/webhooks/mcp/sse``
+En la interfaz hay que seleccionar `Transport type`como `SSE`y la URL a añadir es: `http://localhost:7071/runtime/webhooks/mcp/sse`
 
