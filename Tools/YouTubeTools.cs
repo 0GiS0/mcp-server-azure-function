@@ -5,10 +5,23 @@ using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using System.Text.Json;
 
-namespace McpTools;
+namespace mcp_azure_function.Tools;
 
-public class YouTubeTool(ILogger<YouTubeTool> logger)
+public class YouTubeTool
 {
+    private readonly ILogger<YouTubeTool> logger;
+    private readonly YouTubeService youTubeService;
+
+    public YouTubeTool(ILogger<YouTubeTool> logger)
+    {
+        this.logger = logger;
+        youTubeService = new YouTubeService(new BaseClientService.Initializer
+        {
+            ApiKey = Environment.GetEnvironmentVariable("YouTubeApiKey")
+        });
+    }
+
+
     [Function(nameof(GetYouTubeVideo))]
     public async Task<string> GetYouTubeVideo(
         [McpToolTrigger("searchVideo", "Search for a video on YouTube")]
@@ -18,17 +31,8 @@ public class YouTubeTool(ILogger<YouTubeTool> logger)
     )
     {
         logger.LogInformation($"Looking for videos related with {topic}");
-        
-        var apiKey = Environment.GetEnvironmentVariable("YouTubeApiKey");
-        if (string.IsNullOrEmpty(apiKey))
-        {
-            throw new InvalidOperationException("YouTube API key is not configured.");
-        }
 
-        var youTubeService = new YouTubeService(new BaseClientService.Initializer
-        {
-            ApiKey = apiKey,
-        });
+
 
         var searchRequest = youTubeService.Search.List("snippet");
         searchRequest.Q = topic;
@@ -44,13 +48,13 @@ public class YouTubeTool(ILogger<YouTubeTool> logger)
                 Title = item.Snippet.Title,
                 Url = $"https://www.youtube.com/watch?v={item.Id.VideoId}",
                 Description = item.Snippet.Description,
-                PublishedAt = item.Snippet.PublishedAt,
+                PublishedAt = item.Snippet.PublishedAtDateTimeOffset,
                 ChannelTitle = item.Snippet.ChannelTitle,
-                ThumbnailUrl = item.Snippet.Thumbnails.Default__.Url                
+                ThumbnailUrl = item.Snippet.Thumbnails.Default__.Url
             })
             .ToList();
 
 
-        return System.Text.Json.JsonSerializer.Serialize(videoDetails);
+        return JsonSerializer.Serialize(videoDetails);
     }
 }
