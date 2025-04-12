@@ -5,14 +5,5 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "dotnet.automaticallyCreateSolutionInWorkspace": false,
-    "mcp": {
-        "inputs": [],
-        "servers": {
-            "mcp-server-time": {
-                "type": "sse",
-                "url": "http://localhost:7071/runtime/webhooks/mcp/sse",
-            }
-        }
-    }
+    "dotnet.automaticallyCreateSolutionInWorkspace": false   
 }

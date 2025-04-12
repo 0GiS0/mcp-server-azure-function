@@ -1,0 +1,28 @@
+{
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "mcp-azure-function-key",
+            "description": "Azure Function Key to access the MCP server on Azure",
+            "password": true
+        },
+        {
+            "type": "promptString",
+            "id": "mcp-azure-function-name",
+            "description": "Azure Function name to access the MCP server on Azure"
+        }
+    ],
+    "servers": {
+        "local-mcp-azure-function": {
+            "type": "sse",
+            "url": "http://localhost:7071/runtime/webhooks/mcp/sse",
+        },
+        "remote-mcp-azure-function": {
+            "type": "sse",
+            "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
+            "headers": {
+                "x-functions-key": "${input:mcp-azure-function-profileName}"
+            }
+        }
+    }
+}

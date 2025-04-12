@@ -22,16 +22,15 @@ public class YouTubeTool
     }
 
 
-    [Function(nameof(GetYouTubeVideo))]
-    public async Task<string> GetYouTubeVideo(
-        [McpToolTrigger("searchVideo", "Search for a video on YouTube")]
+    [Function(nameof(SearchYouTubeVideo))]
+    public async Task<string> SearchYouTubeVideo(
+        [McpToolTrigger("search_youtube_video", "Search for a video on YouTube")]
             ToolInvocationContext context,
         [McpToolProperty("topic", "string", "The topic to search for")]
             string topic
     )
     {
         logger.LogInformation($"Looking for videos related with {topic}");
-
 
 
         var searchRequest = youTubeService.Search.List("snippet");
@@ -56,5 +55,38 @@ public class YouTubeTool
 
 
         return JsonSerializer.Serialize(videoDetails);
+    }
+
+
+    [Function(nameof(GetYouTubeChannel))]
+    public async Task<string> GetYouTubeChannel(
+        [McpToolTrigger("get_youtube_channel", "Get channel information")]
+            ToolInvocationContext context,
+        [McpToolProperty("channel_name", "string", "The channel name")]
+            string channelName
+    )
+    {
+        logger.LogInformation($"Getting channel information for {channelName}");
+
+        var channelsRequest = youTubeService.Channels.List("snippet");
+        channelsRequest.ForHandle = channelName;
+
+        var channelsResponse = await channelsRequest.ExecuteAsync();
+
+        // return title and url
+        var channelDetails = channelsResponse.Items
+            .Select(item => new
+            {
+                Title = item.Snippet.Title,
+                Url = $"https://www.youtube.com/{item.Snippet.CustomUrl}",
+                Description = item.Snippet.Description,
+                PublishedAt = item.Snippet.PublishedAtDateTimeOffset,
+                ThumbnailUrl = item.Snippet.Thumbnails.Default__.Url,
+                Language = item.Snippet.DefaultLanguage,
+                Country = item.Snippet.Country
+            })
+            .ToList();
+
+        return JsonSerializer.Serialize(channelDetails);
     }
 }
