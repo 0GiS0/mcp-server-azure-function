@@ -51,4 +51,8 @@ terraform apply
 Esto creará una Azure Function en Azure y la configurará para que use el código de este repositorio. Recuerda que debes tener configuradas las credenciales de Azure en tu máquina local.
 
 
+Una vez lo tengas, cuando intentes iniciar el servidor MCP, te pedirá el nombre de la función que quieres usar en Azure y la master key, que podrás encontrarlas en el portal de Azure.
+
+```bash
+
 ¡Nos vemos 👋🏻!
