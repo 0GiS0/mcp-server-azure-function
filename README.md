@@ -53,6 +53,5 @@ Esto creará una Azure Function en Azure y la configurará para que use el códi
 
 Una vez lo tengas, cuando intentes iniciar el servidor MCP, te pedirá el nombre de la función que quieres usar en Azure y la master key, que podrás encontrarlas en el portal de Azure.
 
-```bash
 
 ¡Nos vemos 👋🏻!
