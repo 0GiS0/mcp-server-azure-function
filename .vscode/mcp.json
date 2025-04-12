@@ -21,7 +21,7 @@
             "type": "sse",
             "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
             "headers": {
-                "x-functions-key": "${input:mcp-azure-function-profileName}"
+                "x-functions-key": "${input:mcp-azure-function-key}"
             }
         }
     }
