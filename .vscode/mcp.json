@@ -17,12 +17,12 @@
             "type": "sse",
             "url": "http://localhost:7071/runtime/webhooks/mcp/sse",
         },
-        "remote-mcp-azure-function": {
-            "type": "sse",
-            "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
-            "headers": {
-                "x-functions-key": "${input:mcp-azure-function-key}"
-            }
-        }
+        // "remote-mcp-azure-function": {
+        //     "type": "sse",
+        //     "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
+        //     "headers": {
+        //         "x-functions-key": "${input:mcp-azure-function-key}"
+        //     }
+        // },       
     }
 }

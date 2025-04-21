@@ -48,13 +48,13 @@ También puedes usar GitHub Copilot Chat para interactuar con este MCP server. P
             "type": "sse",
             "url": "http://localhost:7071/runtime/webhooks/mcp/sse",
         },
-        "remote-mcp-azure-function": {
-            "type": "sse",
-            "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
-            "headers": {
-                "x-functions-key": "${input:mcp-azure-function-key}"
-            }
-        }
+        // "remote-mcp-azure-function": {
+        //     "type": "sse",
+        //     "url": "https://${input:mcp-azure-function-name}.azurewebsites.net/runtime/webhooks/mcp/sse",
+        //     "headers": {
+        //         "x-functions-key": "${input:mcp-azure-function-key}"
+        //     }
+        // }
     }
 }
 ```
@@ -90,6 +90,9 @@ terraform init
 terraform apply
 ```
 Esto creará una Azure Function en Azure y la configurará para que use el código de este repositorio. Recuerda que debes tener configuradas las credenciales de Azure en tu máquina local.
+
+> [!NOTE]
+> Una vez tengas la infrastructura, debes desplegar el código de tu Azure Function. Puedes hacerlo de forma sencilla usando el plugin de Visual Studio Code.
 
 Una vez lo tengas, cuando intentes iniciar el servidor MCP, te pedirá el nombre de la función que quieres usar en Azure y la master key, que podrás encontrarlas en el portal de Azure.
 
