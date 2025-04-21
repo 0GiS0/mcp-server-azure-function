@@ -73,6 +73,11 @@ public class YouTubeTool
 
         var channelsResponse = await channelsRequest.ExecuteAsync();
 
+        if (channelsResponse.Items == null || channelsResponse.Items.Count == 0)
+        {
+            return JsonSerializer.Serialize(new { Error = "Channel not found" });
+        }
+
         // return title and url
         var channelDetails = channelsResponse.Items
             .Select(item => new
