@@ -59,6 +59,13 @@ También puedes usar GitHub Copilot Chat para interactuar con este MCP server. P
 }
 ```
 
+También puedes añadir el mcp a través de la línea de comandos:
+
+```bash
+code --add-mcp '{"name": "local-mcp", "type":  "sse", "url": "http://localhost:7071/runtime/webhooks/mcp/sse"}'
+```
+## Configuración de GitHub Copilot Chat para usar el MCP server 🛠️
+
 Este configuración se compone de dos partes principales:
 
 - `inputs`: que nos van a permitir no tener que harcodear cierto contenido sensible
