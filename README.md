@@ -3,6 +3,8 @@
 
 ¡Hola developer 👋🏻! Este repo forma parte de un vídeo de mi canal de YouTube que muestra cómo podemos crear MCP (Model Context Protocol) servers apoyádonos en Azure Functions y usarlos con el modo agente de GitHub Copilot Chat.
 
+[![Ver el video en YouTube](images/Portada%20Video%20de%20YouTube%20MCP%20servers%20con%20Azure%20Functions.png)](https://github.com/0GiS0/mcp-server-azure-function)
+
 ## Paquete de NuGet para poder crear servidores MCP 📦
 
 Para crear servidores MCP apoyandonos en Azure Functions podemos utilizar esta librería:
